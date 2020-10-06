@@ -10,9 +10,8 @@ export const startLoginEmailPassword = (email, password) =>{
 
         dispatch( startLoading() )
 
-        firebase.auth().signInWithEmailAndPassword(email, password)
+        return firebase.auth().signInWithEmailAndPassword(email, password)
             .then( ({ user }) => {
-                console.log(user);
                 dispatch(
                     login( user.uid, user.displayName )
                 )
@@ -24,7 +23,7 @@ export const startLoginEmailPassword = (email, password) =>{
                 //Show error
                 Swal.fire('Error', e.message, 'error');
             })
-    }
+        }
 }
 
 export const startRegisterWithEmailPasswordName = ( email, password, name ) => {
